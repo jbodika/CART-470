@@ -32,8 +32,8 @@ This week we defined what our project would be. We are creating a prototype that
 [link to the video](https://www.reddit.com/r/arduino/comments/ntjxde/make_your_own_color_sensor_the_lowest_cost_and/)
 
 We plan on using a couple tutorials found online like the ones below:
-- [link to video](https://www.youtube.com/watch?v=Ey5UhCxlxis)
-- [link to video](https://www.youtube.com/watch?v=EeeWH_kBWwc&pp=ygUnY29sb3VyIGRldGVjdGlvbiB1c2luZyBhcmR1aW5vIHRjczM0NzI1)
+- [link to first video](https://www.youtube.com/watch?v=Ey5UhCxlxis)
+- [link to second video](https://www.youtube.com/watch?v=EeeWH_kBWwc&pp=ygUnY29sb3VyIGRldGVjdGlvbiB1c2luZyBhcmR1aW5vIHRjczM0NzI1)
 
 
 
@@ -44,7 +44,7 @@ At today's team meeting we defined what our roles would be in our group. This wi
 <table>
   <thead><th>Role</th><th>Members</th></thead>
   <tr><td>3D Printing Model</td><td>Bianca & Sophie</td></tr>
-  <tr><td>Arduino Scanner</td><td> Dika & Terrance & Jolene</td></tr>
+  <tr><td>Arduino Scanner</td><td> Dika & Terence & Jolene</td></tr>
   <tr><td>Midi Instrument/Audio</td><td>Namiko</td></tr>
   <tr><td>Assistant Project Manager</td><td>Jolene</td></tr>
 </table>
@@ -56,5 +56,77 @@ Tasks for next week
 
 
 
-
 ## Journal Week 5
+
+During reading week Dika, Terence and I met on campus in the computation lab to work on the scanner. We used the TCS34725 sensor and an arduino to create our sensor. When we started to do the wiring we kept getting an error message saying the sensor couldn't be detect it. We tried switching microcontrollers and switching the cables but it only started working once we soldered the sensor on the breadboard.
+
+first code snippet we used
+```
+//project 1 - RGB color sensor 
+#include <Wire.h> 
+#include "Adafruit_TCS34725.h"
+
+// Create an instance of the TCS34725 sensor 
+Adafruit_TCS34725 tcs = Adafruit_TCS34725(TCS34725_INTEGRATIONTIME_614MS, TCS34725_GAIN_1X);
+
+void setup() { 
+  Serial.begin(9600);
+
+if (tcs.begin()) { 
+  Serial.println("Found TCS34725 sensor"); 
+  } 
+else { 
+    Serial.println("No TCS34725 found ... check your connections"); 
+    while (1); // halt the program 
+    } 
+  }
+
+void loop() { 
+  uint16_t r, g, b, c; 
+  tcs.getRawData(&r, &g, &b, &c);
+
+// Check if there is significant color detected 
+  if (c > 50) {   // Adjust the threshold as needed 
+  // Normalize the values 
+  float sum = c; 
+  float red = r / sum; 
+  float green = g / sum; 
+  float blue = b / sum;
+
+Serial.print("R: "); Serial.print(r); Serial.print(" ");
+Serial.print("G: "); Serial.print(g); Serial.print(" ");
+Serial.print("B: "); Serial.print(b); Serial.print(" ");
+Serial.print("C: "); Serial.print(c); Serial.println(" ");
+
+// Calculate the color temperature and lux
+uint16_t colorTemp = tcs.calculateColorTemperature(r, g, b);
+uint16_t lux = tcs.calculateLux(r, g, b);
+
+Serial.print("Color Temp: "); Serial.print(colorTemp, DEC); Serial.print(" K - ");
+Serial.print("Lux: "); Serial.println(lux, DEC);
+
+// Determine the color
+if (red > green && red > blue) {
+  Serial.println("Detected Color: RED");
+} else if (green > red && green > blue) {
+  Serial.println("Detected Color: GREEN");
+} else if (blue > red && blue > green) {
+  Serial.println("Detected Color: BLUE");
+} else {
+  Serial.println("Detected Color: UNKNOWN");
+}
+} else { Serial.println("No significant color detected"); 
+}
+
+// Wait for 2 seconds before the next reading
+ delay(2000); 
+}
+```
+Once we got it to work we realized that the readings weren't working correctly
+
+
+
+
+https://github.com/user-attachments/assets/4be3c6f8-67dd-418e-bda1-b50085780ac2
+
+
