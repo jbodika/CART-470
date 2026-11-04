@@ -130,3 +130,10 @@ Once we got it to work we realized that the readings weren't working correctly
 https://github.com/user-attachments/assets/4be3c6f8-67dd-418e-bda1-b50085780ac2
 
 
+
+## Journal Week 6
+We combined the 3D printed scanner with our version of it. The 3D printed object has an interesting shape but it needs some reworking due to how it could be uncomfortable for different people.
+
+## Journal week 7
+This week we worked on creating the presentation and splitting our tasks evenly for the presentation. we had our client meeting 
+
