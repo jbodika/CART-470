@@ -385,7 +385,7 @@ We presented our work in our last class and received feedback from our peers, wh
 
 We received the audio that the client wanted to use for this project. We will need to figure out how it will be integrated with the scanner so that it plays as part of the final experience. As of now we were thinking of having certain words play when a certain shade or colour or shown but this idea still needs to be developed. 
 
-(Here is the link to the audio)[https://soundcloud.com/kinawind/dont-cry-baby-rita-starr-complete?utm_source=clipboard&utm_medium=text&utm_campaign=social_sharing].
+[Link to the audio](https://soundcloud.com/kinawind/dont-cry-baby-rita-starr-complete?utm_source=clipboard&utm_medium=text&utm_campaign=social_sharing)
 
 ## Journal 9
 I couldn't make it to todays class meeting but our teammates wrote some notes.
